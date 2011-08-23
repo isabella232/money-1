@@ -15,10 +15,10 @@ class String
     if self.scan(/[a-zA-Z\!\"\§\$\%\&\/\(\)\=\?\*\’\ä\Ä\ö\Ö\ü\Ü\#\'\;\:\_\>\<\^\°\+]/).count == 0
       money = self.gsub(",",".")
       if money.scan(".").count == 0
-        Money.new(money * 100)
+        return Money.new(money * 100)
       end
       if money.split(".").count == 2 && money.scan(/[-]/).count <= 1
-        Money.new((money.to_f * 100).to_i)
+        return Money.new((money.to_f * 100).to_i)
       end
     end
     Money.new(nil)
