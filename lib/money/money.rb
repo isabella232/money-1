@@ -87,12 +87,13 @@ class Money
   
   def initialize(cents, currency = Money.default_currency, bank = Money.default_bank)
     @valid_status = validate_cents(cents)
-    @cents = @valid_status ? cents.to_f : 0
+    @cents = @valid_status ? cents.to_f : 0.0
     @currency = currency
     @bank = bank
   end
   
   def validate_cents(cents)
+    return false if cents.nil? || cents == ""
     if !cents.is_a? String
       return true
     else

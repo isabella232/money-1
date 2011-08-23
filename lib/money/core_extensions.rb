@@ -19,23 +19,13 @@ class String
   #   'USD 100'.to_money   # => #<Money @cents=10000, @currency="USD">
   #   '$100 USD'.to_money   # => #<Money @cents=10000, @currency="USD">
   def to_money
-    # Get the currency.
-    # matches = scan /([A-Z]{2,3})/ 
-    #     currency = matches[0] ? matches[0][0] : Money.default_currency
-    #     
-    #     # Get the cents amount
-    #     matches = scan /(\-?[\d ]+([\.,](\d+))?)/
-    #     if matches[0]
-    #       cents = matches[0][0].gsub(/,/, '.')
-    #       cents.gsub!(/ +/, '')
-    #       cents.to_f * 100
-    #       Money.new(cents, currency)
-    #     else
-    #       raise Exception.new("Cannot convert letters to money")
-    #     end
-    
-    Money.new(self)
-    
-    
+    return Money.new(nil) if self.nil?
+    if self.scan(/[a-zA-Z\!\"\§\$\%\&\/\(\)\=\?\*\’\ä\Ä\ö\Ö\ü\Ü\#\'\;\:\_\>\<\^\°\+]/).count == 0
+      money = self.gsub(",",".")
+      if money.split(".").count == 2 && self.scan(/[-]/).count <= 1
+        Money.new(money.to_f * 100)
+      end
+    end
+    Money.new(nil)
   end
 end
