@@ -11,7 +11,7 @@ end
 
 class String
   def to_money
-    return Money.new(nil) if self.nil?
+    return Money.new(nil) if (self.nil?) || (self == "")
     if self.scan(/[a-zA-Z\!\"\§\$\%\&\/\(\)\=\?\*\’\ä\Ä\ö\Ö\ü\Ü\#\'\;\:\_\>\<\^\°\+]/).count == 0
       money = self.gsub(",",".")
       if money.scan(/[-]/).count < 2 
