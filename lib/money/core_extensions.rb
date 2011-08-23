@@ -15,7 +15,7 @@ class String
     if self.scan(/[a-zA-Z\!\"\§\$\%\&\/\(\)\=\?\*\’\ä\Ä\ö\Ö\ü\Ü\#\'\;\:\_\>\<\^\°\+]/).count == 0
       money = self.gsub(",",".")
       if money.scan(/[-]/).count < 2 
-        return Money.new(nil) if money.scan(/[-]/).count == 1 && !money.starts_with? "-"
+        return Money.new(nil) if (money.scan(/[-]/).count == 1) && (!money.starts_with? "-")
         return Money.new(money.to_f * 100)
       end
     end
