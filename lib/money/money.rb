@@ -93,7 +93,7 @@ class Money
   end
   
   def validate_cents(cents)
-    return false if cents.nil? || cents == ""
+    return false if (cents.nil?) || (cents == "")
     if !cents.is_a? String
       return true
     else
