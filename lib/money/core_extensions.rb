@@ -5,7 +5,7 @@ class Numeric
   #   100.to_money => #<Money @cents=10000>
   #   100.37.to_money => #<Money @cents=10037>
   def to_money
-    Money.new(self * 100)
+    Money.new(self)
   end
 end
 
@@ -16,7 +16,7 @@ class String
       money = self.gsub(",",".")
       if money.scan(/[-]/).count < 2 
         return Money.new(nil) if (money.scan(/[-]/).count == 1) && (!money.starts_with? "-")
-        return Money.new(money.to_f * 100)
+        return Money.new(money.to_f)
       end
     end
     Money.new(nil)
