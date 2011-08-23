@@ -22,8 +22,11 @@ class String
     return Money.new(nil) if self.nil?
     if self.scan(/[a-zA-Z\!\"\§\$\%\&\/\(\)\=\?\*\’\ä\Ä\ö\Ö\ü\Ü\#\'\;\:\_\>\<\^\°\+]/).count == 0
       money = self.gsub(",",".")
+      if money.scan(".").count == 0
+        Money.new(money * 100)
+      end
       if money.split(".").count == 2 && self.scan(/[-]/).count <= 1
-        Money.new(money.to_f * 100)
+        Money.new((money.to_f * 100).to_i)
       end
     end
     Money.new(nil)
