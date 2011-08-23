@@ -20,8 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'bigdecimal'
-require 'i18n' rescue LoadError
-require 'money/currency'
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__))
 require 'money/money'
 require 'money/core_extensions'
