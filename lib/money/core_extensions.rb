@@ -12,12 +12,14 @@ end
 class String
   def to_money
     return Money.new(nil) if (self.nil?) || (self == "")
-    if !self.match(/(^[1-9]\d{0,2}(\.\d{3})*?,\d{1,2}$)/).nil?
+    if !self.match(/(^[\-]?[1-9]\d{0,2}(\.\d{3})*?,\d{1,2}$)/).nil?
       return Money.new(self.gsub(".","").gsub(",",".").to_f * 100)
     end
-    if !self.match(/(^[1-9]\d{0,2}(,\d{3})*?\.\d{1,2}$)/).nil?
+    if !self.match(/(^[\-]?[1-9]\d{0,2}(,\d{3})*?\.\d{1,2}$)/).nil?
       return Money.new(self.gsub(",","").to_f * 100)
     end
+    if !self.match(/^[\-]?(\d)*$/)
+      return Money.new(self.to_f * 100)
     Money.new(nil)
   end
 end

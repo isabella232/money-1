@@ -97,15 +97,7 @@ class Money
     if !cents.is_a? String
       return true
     else
-      if cents.scan(/[a-zA-Z\!\"\§\$\%\&\/\(\)\=\?\*\’\ä\Ä\ö\Ö\ü\Ü\#\'\;\:\_\>\<\^\°\+]/).count == 0
-        if cents.scan(/[-]/).count == 0
-          return true
-        elsif cents.scan(/[-]/).count == 1
-          if cents.starts_with? '-'
-            return true
-          end
-        end
-      end
+      return true if !self.match(/(^[\-]?[1-9]\d{0,2}(\.\d{3})*?,\d{1,2}$)/).nil? || !self.match(/(^[\-]?[1-9]\d{0,2}(,\d{3})*?\.\d{1,2}$)/).nil? || !self.match(/^[\-]?(\d)*$/)
     end
     return false
   end
