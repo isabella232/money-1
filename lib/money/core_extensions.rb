@@ -20,6 +20,7 @@ class String
     end
     if !self.match(/^[\-]?(\d)*$/)
       return Money.new(self.to_f * 100)
+    end
     Money.new(nil)
   end
 end
