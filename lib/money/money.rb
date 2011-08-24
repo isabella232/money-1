@@ -97,7 +97,7 @@ class Money
     if !cents.is_a? String
       return true
     else
-      return true if !self.match(/(^[\-]?[1-9]\d{0,2}(\.\d{3})*?,\d{1,2}$)/).nil? || !self.match(/(^[\-]?[1-9]\d{0,2}(,\d{3})*?\.\d{1,2}$)/).nil? || !self.match(/^[\-]?(\d)*$/)
+      return true if !self.match(/(^[\-]?[1-9]\d{0,2}(\.\d{3})*?,\d{1,2}$)/).nil? || !self.match(/(^[\-]?[1-9]\d{0,2}(,\d{3})*?\.\d{1,2}$)/).nil? || !self.match(/^[\-]?(\d)*$/).nil?
     end
     return false
   end
