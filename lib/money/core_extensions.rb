@@ -18,8 +18,8 @@ class String
     if !self.match(/(^[\-]?[1-9]\d{0,2}(,\d{3})*?\.\d{1,2}$)/).nil?
       return Money.new(self.gsub(",","").to_f * 100)
     end
-    if !self.match(/^[\-]?(\d)*$/).nil?
-      return Money.new(self.to_f * 100)
+    if !self.match(/^[\-]?(\d)*[,|.]?\d{0,2}$/).nil?
+      return Money.new(self.gsub(",",".").to_f * 100)
     end
     Money.new(nil)
   end
